@@ -1,0 +1,8 @@
+/* Your custom css code goes here */
+
+.about-section{
+  background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+padding: 3em 0;
+}

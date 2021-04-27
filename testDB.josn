@@ -1,0 +1,86 @@
+{
+    "pk": "Tag01",
+    "pk_data": [ {
+      "sk": "1A",
+      "sk_data": {
+        "type": "calc",
+            "owner": "auto",
+            "ownerContact": "auto@capitalone.com",
+            "cretedDate": "2021/03/15 12:00:00",
+            "createdBy": "tfe641",
+            "approvedDate": "2021/03/16 12:00:00",
+            "approvedBy": "dfx213",
+            "version": "v0",
+            "currVersion": "v1",
+            "approvedStatus": "approved",
+            "state": "active",
+            "dependencies": [],
+            "effective": "2021/03/16",
+            "fields": [{
+                "field_name": "",
+                "revenue": "",
+                "alias": "A"
+            },
+            {
+                "field_name": "",
+                "revenue": "",
+                "alias": "B"
+            }],
+            "operation": "A-B"
+      }
+    },
+    {
+      "sk": "TAG#AUTO#63q12ah#v1",
+      "sk_data": {
+            "type": "calc",
+            "owner": "auto",
+            "ownerContact": "auto@capitalone.com",
+            "cretedDate": "2021/03/15 12:00:00",
+            "createdBy": "tfe6411",
+            "approvedDate": "2021/03/16 12:00:00",
+            "approvedBy": "dfx213",
+            "version": "v1",
+            "approvedStatus": "approved",
+            "state": "pending",
+            "dependencies": [],
+            "effective": "2021/03/16",
+            "fields": [{
+                "field_name": "",
+                "revenue": "",
+                "alias": "A"
+            },
+            {
+                "field_name": "",
+                "revenue": "",
+                "alias": "B"
+            }],
+            "operation": "A-B"
+      }
+    }
+    ]
+  },
+
+  {
+    "pk": "Tag02",
+    "pk_data": [ {
+      "sk": "TAG#AUTO#63q12ah#v2",
+      "sk_data": {
+        "type": "calc",
+            "owner": "auto",
+            "ownerContact": "auto@capitalone.com",
+            "cretedDate": "2021/03/15 12:00:00",
+            "createdBy": "tfe641",
+            "approvedDate": "2021/03/16 12:00:00",
+            "approvedBy": "dfx213",
+            "version": "v0",
+            "currVersion": "v1",
+            "approvedStatus": "approved",
+            "state": "active",
+            "dependencies": [],
+            "effective": "2021/03/16 12:00:00",
+            "targetDataset": "REFERENCE_DID",
+            "joinFields": "acctID",
+            "targetFields": "DID"
+      }
+    }]
+  }

@@ -1,0 +1,649 @@
+{
+  "ModelName": "EnrichmentTagsLibraryV2",
+  "ModelMetadata": {
+    "Author": "TFE641",
+    "DateCreated": "Apr 27, 2021, 11:09 AM",
+    "DateLastModified": "Apr 27, 2021, 03:41 PM",
+    "Description": "Revised second edition of the tags library data model.",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "2.0"
+  },
+  "DataModel": [
+  	{
+  		"TableName": "TagsLibrary",
+  		"KeyAttributes": {
+  			"PartitionKey": {
+  				"AttributeName": "PK",
+  				"AttributeType": "S"
+  			},
+  			"SortKey": {
+  				"AttributeName": "SK",
+  				"AttributeType": "S"
+  			}
+  		},
+  		"NonKeyAttributes": [
+  		{
+  			"AttributeName": "type",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "owner",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "ownerContact",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "createDate",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "createdBy",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "tagName",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "tagDescription",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "approveDate",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "approvedBy",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "state",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "version",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "currVersion",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "deleteDate",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "deletedBy",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "effectiveDate",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "depenencies",
+  			"AttributeType": "L"
+  		},
+  		{
+  			"AttributeName": "sourceDatasetMetadata",
+  			"AttributeType": "L"
+  		},
+  		{
+  			"AttributeName": "referenceDatasetMetadata",
+  			"AttributeType": "L"
+  		},
+  		{
+  			"AttributeName": "joinCriteria",
+  			"AttributeType": "L"
+  		},
+  		{
+  			"AttributeName": "datasetName",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "datasetID",
+  			"AttributeType": "S"
+  		},
+  		{
+  			"AttributeName": "destination",
+  			"AttributeType": "S"
+  		},
+  		],
+  		"TableFacets": [
+  			{
+  				"FacetName": "ReferenceTag",
+  				"KeyAttributeAlias": {
+  					"PartitionKeyAlias": "<ownerID>#SOURCE#<sourceDatasetID>",
+  					"SortKeyAlias": "#TARGET#<targetDatasetID>#REF#<referenceDatasetIDs>#RETURN#<returnFieldName>#v<versionNumer>"
+  				},
+  				"TableData": [],
+  				"NonKeyAttributes": [
+  					"type",
+  					"owner",
+  					"ownerContact",
+  					"createDate",
+  					"createdBy",
+  					"tagName",
+  					"tagDescription",
+  					"approveDate",
+  					"approvedBy",
+  					"state",
+  					"version",
+  					"currVersion",
+  					"deleteDate",
+  					"effectiveDate",
+  					"deletedBy",
+  					"depenencies",
+  					"sourceDatasetMetadata",
+  					"referenceDatasetMetadata",
+  					"joinCriteria"
+  				],
+  				"DataAccess": {
+  					"MySql": {}
+  				}
+  			},
+  			{
+  				"FacetName": "targetDataset",
+  				"KeyAttributeAlias": {
+  					"PartitionKeyAlias": "DATASET#<ubique dataset identifier>",
+  					"SortKeyAlias": "#TARGET#<target dataset ID>"
+  				},
+  				"TableData": [],
+  				"NonKeyAttributes": [
+  					"destination",
+  					"datasetID",
+  					"datasetName"
+  				],
+  				"DataAccess": {
+  					"MySql": {}
+  				}
+  			},
+  			{
+  				"FacetName": "UnapprovedReferenceTag",
+  				"KeyAttributeAlias": {
+  					"PartitionKeyAlias": "<ownerID>#PENDING#<createdBy>",
+  					"SortKeyAlias": "#REF#<tagName>"
+  				},
+  				"TableData": [],
+  				"NonKeyAttributes": [
+  					"type",
+  					"owner",
+  					"ownerContact",
+  					"createDate",
+  					"createdBy",
+  					"tagName",
+  					"tagDescription",
+  					"approveDate",
+  					"approvedBy",
+  					"state",
+  					"version",
+  					"currVersion",
+  					"deleteDate",
+  					"deletedBy",
+  					"effectiveDate",
+  					"depenencies",
+  					"sourceDatasetMetadata",
+  					"referenceDatasetMetadata",
+  					"joinCriteria"
+  				],
+  				"DataAccess": {
+  					"MySql": {}
+  				}
+  			}
+  		],
+  		"TableData": [
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched"
+  				},
+  				"datasetName": {
+  					"S": "1234_enriched"
+  				},
+  				"datasetID": {
+  					"S": "1234"
+  				},
+  				"destination": {
+  					"S": "s3://OneLake..."
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched#REF#2345#RETURN#BU#v0"
+  				},
+  				"type": {
+  					"S": "REF"
+  				},
+  				"owner": {
+  					"S": "COAF"
+  				},
+  				"ownerContact": {
+  					"S": "coaf@capitalone.com"
+  				},
+  				"createDate": {
+  					"S": "04/22/2021 00:00:00"
+  				},
+  				"createdBy": {
+  					"S": "TFE641"
+  				},
+  				"tagName": {
+  					"S": "1234_BU_Enrichment"
+  				},
+  				"tagDescription": {
+  					"S": "Adds a business unit tag to dataset 1234"
+  				},
+  				"approveDate": {
+  					"S": "04/23/2021 00:00:00"
+  				},
+  				"approvedBy": {
+  					"S": "ABC123"
+  				},
+  				"state": {
+  					"S": "active"
+  				},
+  				"version": {
+  					"S": "v0"
+  				},
+  				"currVersion": {
+  					"S": "v2"
+  				},
+  				"effectiveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"depenencies": {
+  					"L": []
+  				},
+  				"sourceDatasetMetadata":{
+  					"L": [
+  						{
+  							"ID": "1234",
+  							"address": "s3://..."
+  						}
+  					]
+  				},
+  				"referenceDatasetMetadata":{
+  					"L": [
+  						{
+  							"ID": "2345",
+  							"address": "postgres://..."
+  						}
+  					]
+  				},
+  				"joinCriteria": {
+  					"L": [
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2345",
+  							"joinFields": [
+  								"account_number"
+  							],
+  							"returnField": "BU"
+  						}
+  					]
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched#REF#2345#RETURN#BU#v1"
+  				},
+  				"type": {
+  					"S": "REF"
+  				},
+  				"owner": {
+  					"S": "COAF"
+  				},
+  				"ownerContact": {
+  					"S": "coaf@capitalone.com"
+  				},
+  				"createDate": {
+  					"S": "04/20/2021 00:00:00"
+  				},
+  				"createdBy": {
+  					"S": "TFE641"
+  				},
+  				"tagName": {
+  					"S": "1234_BU_Enrichment"
+  				},
+  				"tagDescription": {
+  					"S": "Adds a business unit tag to dataset 1234"
+  				},
+  				"approveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"approvedBy": {
+  					"S": "ABC123"
+  				},
+  				"state": {
+  					"S": "deleted"
+  				},
+  				"version": {
+  					"S": "v1"
+  				},
+  				"deleteDate": {
+  					"S": "04/23/2021 00:00:00"
+  				},
+  				"deletedBy": {
+  					"S": "TFE641"
+  				},
+  				"effectiveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"depenencies": {
+  					"L": []
+  				},
+  				"sourceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "1234",
+  							"address": "s3://..."
+  						}
+  					]
+  				},
+  				"referenceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "2345",
+  							"address": "postgres://..."
+  						}
+  					]
+  				},
+  				"joinCriteria": {
+  					"L": [
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2345",
+  							"joinFields": [
+  								"account_number"
+  							],
+  							"returnField": "BU" 
+  						}
+  					]
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched#REF#2345#RETURN#BU#v2"
+  				},
+  				"type": {
+  					"S": "REF"
+  				},
+  				"owner": {
+  					"S": "COAF"
+  				},
+  				"ownerContact": {
+  					"S": "coaf@capitalone.com"
+  				},
+  				"createDate": {
+  					"S": "04/22/2021 00:00:00"
+  				},
+  				"createdBy": {
+  					"S": "TFE641"
+  				},
+  				"tagName": {
+  					"S": "1234_BU_Enrichment"
+  				},
+  				"tagDescription": {
+  					"S": "Adds a business unit tag to dataset 1234"
+  				},
+  				"approveDate": {
+  					"S": "04/23/2021 00:00:00"
+  				},
+  				"approvedBy": {
+  					"S": "ABC123"
+  				},
+  				"state": {
+  					"S": "active"
+  				},
+  				"version": {
+  					"S": "v2"
+  				},
+  				"effectiveDate": {
+  					"S": "04/23/2021 00:00:00"
+  				},
+  				"depenencies": {
+  					"L": []
+  				},
+  				"sourceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "1234",
+  							"address": "s3://..."
+  						}
+  					]
+  				},
+  				"referenceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "2345",
+  							"address": "postgres://..."
+  						}
+  					]
+  				},
+  				"joinCriteria": {
+  					"L": [
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2345",
+  							"joinFields": [
+  								"account_number",
+  								"second_common_field"
+  							],
+  							"returnField": "BU"
+  						}
+  					]
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1345_enriched"
+  				},
+  				"datasetName": {
+  					"S": "1345_enriched"
+  				},
+  				"datasetID": {
+  					"S": "1345"
+  				},
+  				"destination": {
+  					"S": "s3://OneLake..."
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched#REF#2456&2567#RETURN#DID#v0"
+  				},
+  				"type": {
+  					"S": "REF"
+  				},
+  				"owner": {
+  					"S": "COAF"
+  				},
+  				"ownerContact": {
+  					"S": "coaf@capitalone.com"
+  				},
+  				"createDate": {
+  					"S": "04/20/2021 00:00:00"
+  				},
+  				"createdBy": {
+  					"S": "TFE641"
+  				},
+  				"tagName": {
+  					"S": "1234_DID_Enrichment"
+  				},
+  				"tagDescription": {
+  					"S": "Adds a department ID tag to dataset 1234"
+  				},
+  				"approveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"approvedBy": {
+  					"S": "ABC123"
+  				},
+  				"state": {
+  					"S": "active"
+  				},
+  				"version": {
+  					"S": "v0"
+  				},
+  				"currVersion": {
+  					"S": "v1"
+  				},
+  				"effectiveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"depenencies": {
+  					"L": []
+  				},
+  				"sourceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "1234",
+  							"address": "s3://..."
+  						}
+  					]
+  				},
+  				"referenceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "2456",
+  							"address": "postgres://..."
+  						},
+  						{
+  							"ID": "2567",
+  							"address": "postgres://..."
+  						}
+  					]
+  				},
+  				"joinCriteria": {
+  					"L": [ 
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2345",
+  							"joinFields": [
+  								"account_number"
+  							],
+  							"returnField": "return_field_1"
+  						},
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2567",
+  							"joinFields": [
+  								"return_field_1"
+  							],
+  							"returnField": "DID"
+  						}
+  					]
+  				}
+  			},
+  			{
+  				"PK": {
+  					"S": "COAF#SOURCE#1234"
+  				},
+  				"SK": {
+  					"S": "#TARGET#1234_enriched#REF#2456&2567#RETURN#DID#v1"
+  				},
+  				"type": {
+  					"S": "REF"
+  				},
+  				"owner": {
+  					"S": "COAF"
+  				},
+  				"ownerContact": {
+  					"S": "coaf@capitalone.com"
+  				},
+  				"createDate": {
+  					"S": "04/20/2021 00:00:00"
+  				},
+  				"createdBy": {
+  					"S": "TFE641"
+  				},
+  				"tagName": {
+  					"S": "1234_DID_Enrichment"
+  				},
+  				"tagDescription": {
+  					"S": "Adds a department ID tag to dataset 1234"
+  				},
+  				"approveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"approvedBy": {
+  					"S": "ABC123"
+  				},
+  				"state": {
+  					"S": "active"
+  				},
+  				"version": {
+  					"S": "v1"
+  				},
+  				"effectiveDate": {
+  					"S": "04/21/2021 00:00:00"
+  				},
+  				"depenencies": {
+  					"L": []
+  				},
+  				"sourceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "1234",
+  							"address": "s3://..."
+  						}
+  					]
+  				},
+  				"referenceDatasetMetadata": {
+  					"L": [
+  						{
+  							"ID": "2456",
+  							"address": "postgres://..."
+  						},
+  						{
+  							"ID": "2567",
+  							"address":"postgres://..."
+  						}
+  					]
+  				},
+  				"joinCriteria": {
+  					"L": [
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2345",
+  							"joinFields": [
+  								"account_number"
+  							],
+  							"returnField": "return_field_1"
+  						},
+  						{
+  							"sourceID": "1234",
+  							"referenceID": "2567",
+  							"joinFields": [
+  								"return_field_1"
+  							],
+  							"returnField": "DID"
+  						}
+  					]
+  				}
+  			}
+  		],
+		"DataAccess": {
+			"MySql": {}
+		}
+  	}
+  ]
+}
